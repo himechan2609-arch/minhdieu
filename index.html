@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nguyễn Minh Diệu — Portfolio 🌿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#ffffff;
+    --cream:#f8fcf7;
+    --mint-50:#eaf6ec;
+    --mint-100:#d6eeda;
+    --mint-200:#bfe4c7;
+    --sage-300:#a3d6ae;
+    --sage-500:#74b586;
+    --forest-600:#4c8a63;
+    --forest-700:#3a6d4d;
+    --forest-800:#2b5239;
+    --ink:#233428;
+    --ink-soft:#57695d;
+    --radius-lg:22px;
+    --radius-md:14px;
+    --font-display:"Fraunces", serif;
+    --font-body:"Be Vietnam Pro", sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.7;
+  }
+  a{color:inherit;text-decoration:none;}
+
+  /* ===== layout shell ===== */
+  .shell{display:flex;min-height:100vh;}
+
+  /* ===== sidebar ===== */
+  .sidebar{
+    width:290px;
+    flex-shrink:0;
+    background:linear-gradient(185deg, var(--forest-700) 0%, var(--forest-800) 100%);
+    color:var(--mint-50);
+    position:sticky;
+    top:0;
+    height:100vh;
+    padding:2.4rem 1.9rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .brand-top{display:flex;flex-direction:column;gap:1.6rem;}
+  .monogram{
+    width:64px;height:64px;border-radius:50%;
+    background:var(--mint-100);
+    color:var(--forest-800);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-size:1.5rem;font-weight:600;
+  }
+  .who h1{
+    font-family:var(--font-display);
+    font-size:1.5rem;
+    font-weight:500;
+    margin:0 0 .3rem;
+    line-height:1.25;
+  }
+  .who p{margin:.15rem 0;font-size:.85rem;color:var(--mint-100);opacity:.9;}
+  .tag-pill{
+    display:inline-block;margin-top:.6rem;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:999px;
+    padding:.3rem .8rem;
+    font-size:.78rem;
+    letter-spacing:.02em;
+  }
+  nav.side-nav{display:flex;flex-direction:column;gap:.35rem;margin-top:1rem;}
+  nav.side-nav a{
+    font-size:.92rem;
+    padding:.6rem .8rem;
+    border-radius:10px;
+    color:var(--mint-50);
+    opacity:.82;
+    transition:background .2s, opacity .2s;
+  }
+  nav.side-nav a:hover, nav.side-nav a.active{
+    background:rgba(255,255,255,.12);
+    opacity:1;
+  }
+  .sidebar-footer{font-size:.75rem;color:var(--mint-100);opacity:.65;}
+
+  /* ===== main ===== */
+  main{flex:1;min-width:0;}
+
+  .hero{
+    padding:4.2rem 4.5rem 3rem;
+    position:relative;
+    overflow:hidden;
+    background:var(--white);
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-90px;top:-90px;
+    width:280px;height:280px;
+    border-radius:50%;
+    background:var(--mint-50);
+    z-index:0;
+  }
+  .hero-inner{position:relative;z-index:1;max-width:640px;}
+  .eyebrow{
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--forest-600);
+    font-weight:600;
+    margin-bottom:.9rem;
+  }
+  .hero h2{
+    font-family:var(--font-display);
+    font-size:2.6rem;
+    font-weight:500;
+    margin:0 0 1.1rem;
+    color:var(--forest-800);
+  }
+  .hero p.lede{
+    font-size:1.02rem;
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+
+  section{padding:3.2rem 4.5rem;}
+  .divider-wave{
+    display:block;width:100%;height:44px;
+    margin-top:-1px;
+  }
+
+  h3.section-title{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:1.6rem;
+    color:var(--forest-800);
+    margin:0 0 2rem;
+  }
+
+  /* about grid */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1.6rem;
+  }
+  .info-card{
+    background:var(--white);
+    border:1px solid var(--mint-100);
+    border-radius:var(--radius-md);
+    padding:1.6rem 1.7rem;
+  }
+  .info-card h4{
+    margin:0 0 .7rem;
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:1.1rem;
+    color:var(--forest-700);
+  }
+  .info-card p{margin:0;color:var(--ink-soft);font-size:.94rem;}
+
+  /* exercises */
+  .track{background:var(--mint-50);}
+  .exercise-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1.3rem;
+  }
+  .ex-card{
+    background:var(--white);
+    border-radius:var(--radius-md);
+    padding:1.5rem;
+    border:1px solid var(--mint-100);
+    display:flex;flex-direction:column;gap:.7rem;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .ex-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 24px -14px rgba(43,82,57,.35);
+  }
+  .ex-icon{
+    width:38px;height:38px;border-radius:10px;
+    background:var(--mint-100);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.1rem;
+  }
+  .ex-card h4{
+    margin:0;
+    font-size:1.02rem;
+    font-family:var(--font-display);
+    font-weight:500;
+    color:var(--forest-800);
+  }
+  .ex-card .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--forest-600);font-weight:600;}
+  .ex-card p{margin:0;font-size:.87rem;color:var(--ink-soft);}
+  .ex-card .doc-link{
+    margin-top:.3rem;
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--forest-700);
+    display:inline-flex;align-items:center;gap:.3rem;
+  }
+  .ex-card .doc-link:hover{text-decoration:underline;}
+
+  /* reflection */
+  .reflect-list{
+    display:flex;flex-direction:column;
+    border-left:2px solid var(--mint-200);
+    margin-left:.4rem;
+  }
+  .reflect-item{
+    position:relative;
+    padding:0 0 2.2rem 2.2rem;
+  }
+  .reflect-item:last-child{padding-bottom:0;}
+  .reflect-item::before{
+    content:"";
+    position:absolute;
+    left:-7px;top:.3rem;
+    width:12px;height:12px;
+    border-radius:50%;
+    background:var(--sage-500);
+    border:3px solid var(--white);
+    box-shadow:0 0 0 1px var(--mint-200);
+  }
+  .reflect-item h4{
+    margin:0 0 .5rem;
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:1.12rem;
+    color:var(--forest-800);
+  }
+  .reflect-item p{margin:0;color:var(--ink-soft);font-size:.94rem;max-width:640px;}
+  blockquote{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.2rem;
+    color:var(--forest-700);
+    border-left:3px solid var(--sage-300);
+    padding-left:1.2rem;
+    margin:0 0 2.4rem;
+  }
+
+  /* stats */
+  .stats-bar{
+    background:var(--forest-800);
+    color:var(--mint-50);
+    padding:3rem 4.5rem;
+    display:flex;
+    justify-content:space-between;
+    gap:2rem;
+    flex-wrap:wrap;
+  }
+  .stat{flex:1;min-width:160px;}
+  .ring{
+    width:74px;height:74px;
+    border-radius:50%;
+    border:5px solid var(--sage-300);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);
+    font-size:1.05rem;
+    margin-bottom:.9rem;
+  }
+  .stat h5{margin:0 0 .3rem;font-size:.95rem;color:var(--mint-100);font-weight:500;}
+  .stat span.desc{font-size:.8rem;color:var(--mint-100);opacity:.75;}
+
+  footer.site-footer{
+    text-align:center;
+    padding:1.6rem;
+    font-size:.8rem;
+    color:var(--ink-soft);
+    background:var(--white);
+  }
+
+  @media (max-width: 980px){
+    .shell{flex-direction:column;}
+    .sidebar{width:100%;height:auto;position:relative;flex-direction:row;align-items:center;flex-wrap:wrap;padding:1.5rem;}
+    .brand-top{flex-direction:row;align-items:center;gap:1rem;}
+    nav.side-nav{flex-direction:row;flex-wrap:wrap;margin-top:0;}
+    .sidebar-footer{display:none;}
+    .hero, section, .stats-bar{padding:2.4rem 1.6rem;}
+    .about-grid, .exercise-grid{grid-template-columns:1fr;}
+    .hero h2{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="brand-top">
+      <div class="monogram">MD</div>
+      <div class="who">
+        <h1>Nguyễn Minh Diệu</h1>
+        <p>MSV 25051142</p>
+        <p>Kinh tế Quốc tế · Đại học Kinh Tế</p>
+        <span class="tag-pill">VNU1001_E252041</span>
+      </div>
+      <nav class="side-nav">
+        <a href="#gioi-thieu">Giới thiệu</a>
+        <a href="#chang-duong">Chặng đường học tập</a>
+        <a href="#goc-nhin">Góc nhìn cá nhân</a>
+        <a href="#dau-an">Dấu ấn số</a>
+      </nav>
+    </div>
+    <div class="sidebar-footer">🌿 made by Nguyễn Minh Diệu<br>Đại học Kinh Tế</div>
+  </aside>
+
+  <main>
+
+    <div class="hero" id="gioi-thieu">
+      <div class="hero-inner">
+        <div class="eyebrow">Portfolio học phần VNU1001</div>
+        <h2>Chào bạn, mình là Minh Diệu 🌿</h2>
+        <p class="lede">
+          Mình đang là sinh viên ngành <strong>Kinh tế Quốc tế</strong> tại <strong>Trường Đại học Kinh Tế</strong>. Trang này giống một góc lưu trữ nho nhỏ, nơi mình ghi lại quá trình tự làm quen với các công cụ số và trí tuệ nhân tạo trong suốt học phần — từ những thao tác cơ bản nhất cho đến việc biến dữ liệu, ý tưởng thành các sản phẩm trình bày rõ ràng, có tính ứng dụng. Với mình, đây không chỉ là tập hợp bài tập, mà là bằng chứng cho một cách học chủ động hơn: biết dùng công nghệ đúng lúc, đúng việc, mà vẫn giữ được tư duy phản biện của riêng mình.
+        </p>
+      </div>
+    </div>
+
+    <svg class="divider-wave" viewBox="0 0 1440 60" preserveAspectRatio="none">
+      <path fill="var(--mint-50)" d="M0,32 C240,64 480,0 720,20 C960,40 1200,64 1440,28 L1440,60 L0,60 Z"></path>
+    </svg>
+
+    <section style="background:var(--mint-50); padding-top:0;">
+      <h3 class="section-title">Đôi nét về mình</h3>
+      <div class="about-grid">
+        <div class="info-card">
+          <h4>🌱 Những điều mình thích</h4>
+          <p>Mình thích đọc tin tức về kinh tế - thị trường, nghe podcast lúc rảnh và hay note lại những ý hay trong một cuốn sổ nhỏ. Ngoài giờ học, mình tìm sự cân bằng qua việc xem phim, chăm vài chậu cây trên bàn học và những buổi đi dạo ngắn để đầu óc thư giãn hơn. Gần đây mình cũng hay tò mò thử các công cụ mới, xem chúng có thể giúp việc học và làm việc nhóm gọn gàng hơn không.</p>
+        </div>
+        <div class="info-card">
+          <h4>🎯 Điều mình muốn đạt được ở học phần này</h4>
+          <p>Mình muốn rút ngắn khoảng cách giữa nền tảng kinh tế mình đang học với năng lực số cần thiết cho công việc sau này: biết tra cứu và xử lý dữ liệu hiệu quả, dùng AI như một công cụ hỗ trợ phân tích và trình bày, đồng thời luôn ý thức rõ ranh giới đạo đức, tính trung thực khi ứng dụng công nghệ vào học thuật.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="chang-duong" class="track">
+      <h3 class="section-title">Chặng đường 6 bài thực hành</h3>
+      <div class="exercise-grid">
+
+        <div class="ex-card">
+          <div class="ex-icon">🌿</div>
+          <span class="label">Bài 01</span>
+          <h4>Làm chủ tệp tin & thư mục</h4>
+          <p>Rèn thói quen sắp xếp máy tính khoa học — đặt tên, phân loại và đồng bộ tài liệu học tập một cách có hệ thống, cùng các phím tắt giúp xử lý công việc nhanh hơn mỗi ngày.</p>
+          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+        </div>
+
+        <div class="ex-card">
+          <div class="ex-icon">🌿</div>
+          <span class="label">Bài 02</span>
+          <h4>Tra cứu & thẩm định thông tin</h4>
+          <p>Tập thói quen tìm nguồn dữ liệu, số liệu kinh tế đáng tin cậy, biết so sánh và đánh giá độ chính xác trước khi đưa vào bài viết hay bài phân tích của mình.</p>
+          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+        </div>
+
+        <div class="ex-card">
+          <div class="ex-icon">🌿</div>
+          <span class="label">Bài 03</span>
+          <h4>Đặt câu lệnh (prompt) hiệu quả</h4>
+          <p>Học cách diễn đạt yêu cầu rõ ràng, có ngữ cảnh để AI trả lời đúng trọng tâm, phục vụ cho việc ôn tập và giải thích các khái niệm kinh tế phức tạp.</p>
+          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+        </div>
+
+        <div class="ex-card">
+          <div class="ex-icon">🌿</div>
+          <span class="label">Bài 04</span>
+          <h4>Công cụ làm việc nhóm trực tuyến</h4>
+          <p>Sử dụng các nền tảng đám mây để cùng nhóm chia sẻ tài liệu, phân công và theo dõi tiến độ dự án theo thời gian thực, hạn chế thất lạc thông tin.</p>
+          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+        </div>
+
+        <div class="ex-card">
+          <div class="ex-icon">🌿</div>
+          <span class="label">Bài 05</span>
+          <h4>AI tạo sinh cho nội dung học tập</h4>
+          <p>Thử nghiệm các công cụ AI tạo văn bản, hình ảnh để làm bài trình bày trực quan, dễ hiểu hơn, đồng thời vẫn giữ tư duy chọn lọc thay vì phụ thuộc hoàn toàn vào công cụ.</p>
+          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+        </div>
+
+        <div class="ex-card">
+          <div class="ex-icon">🌿</div>
+          <span class="label">Bài 06</span>
+          <h4>Ứng dụng AI có trách nhiệm</h4>
+          <p>Tìm hiểu các nguyên tắc liêm chính học thuật khi dùng AI, từ đó xây dựng cho mình quy tắc sử dụng công nghệ minh bạch, tôn trọng bản quyền và dữ liệu của người khác.</p>
+          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="goc-nhin">
+      <h3 class="section-title">Góc nhìn sau một chặng học</h3>
+      <blockquote>"Kiến thức chuyên ngành cho mình nền tảng, còn công nghệ giúp mình đi xa hơn với nền tảng đó."</blockquote>
+      <div class="reflect-list">
+        <div class="reflect-item">
+          <h4>🔑 Điều mình đúc kết được</h4>
+          <p>AI xử lý dữ liệu nhanh, nhưng không thể thay thế việc mình phải hiểu bản chất vấn đề. Công nghệ chỉ thực sự hữu ích khi đi cùng khả năng đặt câu hỏi đúng và diễn giải kết quả một cách có chọn lọc — đó mới là phần quyết định chất lượng sản phẩm cuối cùng.</p>
+        </div>
+        <div class="reflect-item">
+          <h4>🌱 Mình đã thay đổi thế nào</h4>
+          <p>Từ chỗ khá dè dặt với các công cụ công nghệ, giờ mình đã tự tin hơn nhiều khi tự mày mò, sắp xếp dữ liệu và phối hợp với AI trong học tập. Công nghệ không còn là thứ xa lạ, mà trở thành một "cộng sự" hỗ trợ mình tiết kiệm thời gian cho những việc cần tư duy sâu hơn.</p>
+        </div>
+        <div class="reflect-item">
+          <h4>💭 Cảm nhận khi nhìn lại portfolio</h4>
+          <p>Nhìn lại cả quá trình, mình khá bất ngờ vì lượng công cụ và kỹ năng mình đã thử nghiệm chỉ trong một học phần. Việc tự tay hoàn thiện từng bài mang lại cảm giác có thành quả rõ ràng, và mình nhận ra học công nghệ không hề khô khan như mình từng nghĩ.</p>
+        </div>
+        <div class="reflect-item">
+          <h4>🌟 Dự định tiếp theo</h4>
+          <p>Mình muốn tiếp tục áp dụng những kỹ năng này vào việc học chuyên ngành Kinh tế Quốc tế — đặc biệt trong việc tra cứu số liệu, phân tích thị trường và trình bày báo cáo một cách khoa học, chủ động hơn thay vì chỉ làm theo thói quen cũ.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-bar" id="dau-an">
+      <div class="stat">
+        <div class="ring">6/6</div>
+        <h5>Bài thực hành</h5>
+        <span class="desc">Đã hoàn thành trọn vẹn</span>
+      </div>
+      <div class="stat">
+        <div class="ring">100%</div>
+        <h5>Nỗ lực đầu tư</h5>
+        <span class="desc">Cho mỗi sản phẩm nộp</span>
+      </div>
+      <div class="stat">
+        <div class="ring">A+</div>
+        <h5>Mục tiêu học phần</h5>
+        <span class="desc">VNU1001_E252041</span>
+      </div>
+    </div>
+
+    <footer class="site-footer">🌿 Portfolio của Nguyễn Minh Diệu — Kinh tế Quốc tế, Đại học Kinh Tế</footer>
+
+  </main>
+</div>
+
+<script>
+  const links = document.querySelectorAll('.side-nav a');
+  const sections = Array.from(links).map(l => document.querySelector(l.getAttribute('href')));
+  window.addEventListener('scroll', () => {
+    let idx = 0;
+    sections.forEach((s, i) => {
+      if (s && window.scrollY >= s.offsetTop - 140) idx = i;
+    });
+    links.forEach((l, i) => l.classList.toggle('active', i === idx));
+  });
+</script>
+
+</body>
+</html>
