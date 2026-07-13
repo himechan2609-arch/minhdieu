@@ -55,13 +55,20 @@
     justify-content:space-between;
   }
   .brand-top{display:flex;flex-direction:column;gap:1.6rem;}
-  .monogram{
-    width:64px;height:64px;border-radius:50%;
-    background:var(--mint-100);
-    color:var(--forest-800);
-    display:flex;align-items:center;justify-content:center;
-    font-family:var(--font-display);font-size:1.5rem;font-weight:600;
+  
+  /* ĐÃ CHỈNH SỬA: CSS cho Avatar ảnh to và tròn đều */
+  .avatar-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
+    border: 3px solid var(--mint-100);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
   }
+  
+  .who { text-align: center; margin-top: 0.5rem; }
   .who h1{
     font-family:var(--font-display);
     font-size:1.5rem;
@@ -87,6 +94,7 @@
     color:var(--mint-50);
     opacity:.82;
     transition:background .2s, opacity .2s;
+    text-align: left;
   }
   nav.side-nav a:hover, nav.side-nav a.active{
     background:rgba(255,255,255,.12);
@@ -173,39 +181,71 @@
   .track{background:var(--mint-50);}
   .exercise-grid{
     display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:1.3rem;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1.5rem;
   }
   .ex-card{
     background:var(--white);
     border-radius:var(--radius-md);
-    padding:1.5rem;
+    padding:1.8rem;
     border:1px solid var(--mint-100);
-    display:flex;flex-direction:column;gap:.7rem;
+    display:flex;flex-direction:column;gap:1rem;
     transition:transform .2s, box-shadow .2s;
   }
   .ex-card:hover{
     transform:translateY(-4px);
     box-shadow:0 12px 24px -14px rgba(43,82,57,.35);
   }
+  .ex-header{
+    display:flex;
+    align-items:center;
+    gap:0.8rem;
+  }
   .ex-icon{
     width:38px;height:38px;border-radius:10px;
     background:var(--mint-100);
     display:flex;align-items:center;justify-content:center;
     font-size:1.1rem;
+    flex-shrink:0;
+  }
+  .ex-title-block{
+    display:flex;
+    flex-direction:column;
   }
   .ex-card h4{
     margin:0;
-    font-size:1.02rem;
+    font-size:1.1rem;
     font-family:var(--font-display);
     font-weight:500;
     color:var(--forest-800);
   }
   .ex-card .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--forest-600);font-weight:600;}
-  .ex-card p{margin:0;font-size:.87rem;color:var(--ink-soft);}
+  
+  .ex-detail-item {
+    font-size:0.88rem;
+    border-left: 2px solid var(--mint-200);
+    padding-left: 0.8rem;
+    margin: 0.2rem 0;
+  }
+  .ex-detail-item strong {
+    color: var(--forest-700);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.1rem;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .ex-detail-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
   .ex-card .doc-link{
-    margin-top:.3rem;
-    font-size:.82rem;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-size:.88rem;
     font-weight:600;
     color:var(--forest-700);
     display:inline-flex;align-items:center;gap:.3rem;
@@ -285,8 +325,8 @@
   @media (max-width: 980px){
     .shell{flex-direction:column;}
     .sidebar{width:100%;height:auto;position:relative;flex-direction:row;align-items:center;flex-wrap:wrap;padding:1.5rem;}
-    .brand-top{flex-direction:row;align-items:center;gap:1rem;}
-    nav.side-nav{flex-direction:row;flex-wrap:wrap;margin-top:0;}
+    .brand-top{flex-direction:column;align-items:center;gap:1rem;width:100%;}
+    nav.side-nav{flex-direction:row;flex-wrap:wrap;margin-top:1rem;justify-content:center;}
     .sidebar-footer{display:none;}
     .hero, section, .stats-bar{padding:2.4rem 1.6rem;}
     .about-grid, .exercise-grid{grid-template-columns:1fr;}
@@ -299,7 +339,9 @@
 
   <aside class="sidebar">
     <div class="brand-top">
-      <div class="monogram">MD</div>
+      <!-- ĐÃ THAY ĐỔI: Dùng thẻ <img> để chèn ảnh trực tiếp thay vì chữ MD -->
+      <img src="ĐƯỜNG_DẪN_ẢNH_CỦA_BẠN_TẠI_ĐÂY" alt="Nguyễn Minh Diệu" class="avatar-img">
+      
       <div class="who">
         <h1>Nguyễn Minh Diệu</h1>
         <p>MSV 25051142</p>
@@ -350,52 +392,172 @@
       <h3 class="section-title">Chặng đường 6 bài thực hành</h3>
       <div class="exercise-grid">
 
+        <!-- BÀI 1 -->
         <div class="ex-card">
-          <div class="ex-icon">🌿</div>
-          <span class="label">Bài 01</span>
-          <h4>Làm chủ tệp tin & thư mục</h4>
-          <p>Rèn thói quen sắp xếp máy tính khoa học — đặt tên, phân loại và đồng bộ tài liệu học tập một cách có hệ thống, cùng các phím tắt giúp xử lý công việc nhanh hơn mỗi ngày.</p>
-          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+          <div class="ex-header">
+            <div class="ex-icon">🌿</div>
+            <div class="ex-title-block">
+              <span class="label">Bài 01</span>
+              <h4>Làm chủ tệp tin & thư mục</h4>
+            </div>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Mục tiêu</strong>
+            <p>Xây dựng không gian làm việc số ngăn nắp, tối ưu hóa tốc độ thao tác trên máy tính để tạo nền tảng quản lý tài liệu lâu dài.</p>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Quá trình thực hiện</strong>
+            <p>Rèn thói quen sắp xếp máy tính khoa học — đặt tên, phân loại và đồng bộ tài liệu học tập một cách có hệ thống, cùng các phím tắt giúp xử lý công việc nhanh hơn mỗi ngày.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Bài học đúc kết</strong>
+            <p>Việc phân loại tệp khoa học ngay từ đầu giúp tiết kiệm tối đa thời gian tìm kiếm và hạn chế rủi ro thất lạc dữ liệu quan trọng.</p>
+          </div>
+
+          <a class="doc-link" href="#">📁 Xem báo cáo của tôi →</a>
         </div>
 
+        <!-- BÀI 2 -->
         <div class="ex-card">
-          <div class="ex-icon">🌿</div>
-          <span class="label">Bài 02</span>
-          <h4>Tra cứu & thẩm định thông tin</h4>
-          <p>Tập thói quen tìm nguồn dữ liệu, số liệu kinh tế đáng tin cậy, biết so sánh và đánh giá độ chính xác trước khi đưa vào bài viết hay bài phân tích của mình.</p>
-          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+          <div class="ex-header">
+            <div class="ex-icon">🌿</div>
+            <div class="ex-title-block">
+              <span class="label">Bài 02</span>
+              <h4>Tra cứu & thẩm định thông tin</h4>
+            </div>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Mục tiêu</strong>
+            <p>Hình thành bộ lọc tư duy để nhận diện, chọn lọc và kiểm chứng thông tin giữa môi trường mạng nhiều dữ liệu nhiễu.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Quá trình thực hiện</strong>
+            <p>Tập thói quen tìm nguồn dữ liệu, số liệu kinh tế đáng tin cậy, biết so sánh và đánh giá độ chính xác trước khi đưa vào bài viết hay bài phân tích của mình.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Bài học đúc kết</strong>
+            <p>Không phải số liệu nào trên Internet cũng chính xác; cần đối chiếu chéo với các nguồn chính thống (GSO, World Bank...) trước khi trích dẫn.</p>
+          </div>
+
+          <a class="doc-link" href="#">📁 Xem báo cáo của tôi →</a>
         </div>
 
+        <!-- BÀI 3 -->
         <div class="ex-card">
-          <div class="ex-icon">🌿</div>
-          <span class="label">Bài 03</span>
-          <h4>Đặt câu lệnh (prompt) hiệu quả</h4>
-          <p>Học cách diễn đạt yêu cầu rõ ràng, có ngữ cảnh để AI trả lời đúng trọng tâm, phục vụ cho việc ôn tập và giải thích các khái niệm kinh tế phức tạp.</p>
-          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+          <div class="ex-header">
+            <div class="ex-icon">🌿</div>
+            <div class="ex-title-block">
+              <span class="label">Bài 03</span>
+              <h4>Đặt câu lệnh (prompt) hiệu quả</h4>
+            </div>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Mục tiêu</strong>
+            <p>Nắm vững tư duy giao tiếp với AI, biết cách cung cấp ngữ cảnh rõ ràng để nhận về kết quả có độ chính xác cao nhất.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Quá trình thực hiện</strong>
+            <p>Học cách diễn đạt yêu cầu rõ ràng, có ngữ cảnh để AI trả lời đúng trọng tâm, phục vụ cho việc ôn tập và giải thích các khái niệm kinh tế phức tạp.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Bài học đúc kết</strong>
+            <p>Chất lượng câu trả lời của AI phụ thuộc hoàn toàn vào độ chi tiết và logic của câu lệnh (Prompt) mà người dùng đưa vào.</p>
+          </div>
+
+          <a class="doc-link" href="#">📁 Xem báo cáo của tôi →</a>
         </div>
 
+        <!-- BÀI 4 -->
         <div class="ex-card">
-          <div class="ex-icon">🌿</div>
-          <span class="label">Bài 04</span>
-          <h4>Công cụ làm việc nhóm trực tuyến</h4>
-          <p>Sử dụng các nền tảng đám mây để cùng nhóm chia sẻ tài liệu, phân công và theo dõi tiến độ dự án theo thời gian thực, hạn chế thất lạc thông tin.</p>
-          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+          <div class="ex-header">
+            <div class="ex-icon">🌿</div>
+            <div class="ex-title-block">
+              <span class="label">Bài 04</span>
+              <h4>Công cụ làm việc nhóm trực tuyến</h4>
+            </div>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Mục tiêu</strong>
+            <p>Làm chủ các ứng dụng đám mây để tối ưu hóa quy trình tương tác, chia sẻ thông tin và quản lý tiến độ công việc chung.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Quá trình thực hiện</strong>
+            <p>Sử dụng các nền tảng đám mây để cùng nhóm chia sẻ tài liệu, phân công và theo dõi tiến độ dự án theo thời gian thực, hạn chế thất lạc thông tin.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Bài học đúc kết</strong>
+            <p>Làm việc trực tuyến đòi hỏi tính kỷ luật, sự minh bạch trong việc cập nhật trạng thái và phân quyền truy cập dữ liệu hợp lý.</p>
+          </div>
+
+          <a class="doc-link" href="#">📁 Xem báo cáo của tôi →</a>
         </div>
 
+        <!-- BÀI 5 -->
         <div class="ex-card">
-          <div class="ex-icon">🌿</div>
-          <span class="label">Bài 05</span>
-          <h4>AI tạo sinh cho nội dung học tập</h4>
-          <p>Thử nghiệm các công cụ AI tạo văn bản, hình ảnh để làm bài trình bày trực quan, dễ hiểu hơn, đồng thời vẫn giữ tư duy chọn lọc thay vì phụ thuộc hoàn toàn vào công cụ.</p>
-          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+          <div class="ex-header">
+            <div class="ex-icon">🌿</div>
+            <div class="ex-title-block">
+              <span class="label">Bài 05</span>
+              <h4>AI tạo sinh cho nội dung học tập</h4>
+            </div>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Mục tiêu</strong>
+            <p>Ứng dụng AI đa phương tiện (văn bản, hình ảnh) để trực quan hóa kiến thức, tăng sức thuyết phục cho các bài báo cáo và thuyết trình.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Quá trình thực hiện</strong>
+            <p>Thử nghiệm các công cụ AI tạo văn bản, hình ảnh để làm bài trình bày trực quan, dễ hiểu hơn, đồng thời vẫn giữ tư duy chọn lọc thay vì phụ thuộc hoàn toàn vào công cụ.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Bài học đúc kết</strong>
+            <p>AI là trợ lý đắc lực để khơi nguồn ý tưởng thẩm mỹ, nhưng tư duy sắp xếp và thẩm định cuối cùng vẫn phải thuộc về con người.</p>
+          </div>
+
+          <a class="doc-link" href="#">📁 Xem báo cáo của tôi →</a>
         </div>
 
+        <!-- BÀI 6 -->
         <div class="ex-card">
-          <div class="ex-icon">🌿</div>
-          <span class="label">Bài 06</span>
-          <h4>Ứng dụng AI có trách nhiệm</h4>
-          <p>Tìm hiểu các nguyên tắc liêm chính học thuật khi dùng AI, từ đó xây dựng cho mình quy tắc sử dụng công nghệ minh bạch, tôn trọng bản quyền và dữ liệu của người khác.</p>
-          <a class="doc-link" href="#">📁 Xem tài liệu bài làm →</a>
+          <div class="ex-header">
+            <div class="ex-icon">🌿</div>
+            <div class="ex-title-block">
+              <span class="label">Bài 06</span>
+              <h4>Ứng dụng AI có trách nhiệm</h4>
+            </div>
+          </div>
+          
+          <div class="ex-detail-item">
+            <strong>Mục tiêu</strong>
+            <p>Hiểu sâu về ranh giới đạo đức và các tiêu chuẩn liêm chính học thuật khi sử dụng công nghệ trong nghiên cứu, học tập.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Quá trình thực hiện</strong>
+            <p>Tìm hiểu các nguyên tắc liêm chính học thuật khi dùng AI, từ đó xây dựng cho mình quy tắc sử dụng công nghệ minh bạch, tôn trọng bản quyền và dữ liệu của người khác.</p>
+          </div>
+
+          <div class="ex-detail-item">
+            <strong>Bài học đúc kết</strong>
+            <p>Sử dụng AI có trách nhiệm không chỉ bảo vệ giá trị tấm bằng của bản thân mà còn thể hiện sự tôn trọng đối với tri thức của cộng đồng.</p>
+          </div>
+
+          <a class="doc-link" href="#">📁 Xem báo cáo của tôi →</a>
         </div>
 
       </div>
